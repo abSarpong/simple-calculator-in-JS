@@ -1,0 +1,37 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 400px;
+    height: 600px;
+}
+
+.display-wrapper {
+    background-color: #ccc;
+    height: 60px;
+    padding: 20px;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.history {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+.output {
+    font-size: 24px;
+}
+
+button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 20px;
+    margin: 20px;
+}
