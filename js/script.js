@@ -43,16 +43,26 @@ function printValue(num){
         operators[i].addEventListener('click', function(){
             let operator = this.id;
 
-            if(operator == 'clear'){
+            if(operator == 'clear-entry'){
+                if(output !== ''){
+                    let output = getValue();
+                    output = output.substr(0, output.length -1);
+                    printValue(output);
+                    console.log(output);
+                }
+            }
+            else if(operator == 'clear'){
                 printValue('');
                 printHistory('');
-            }else if(operator == '='){
+            }
+            else if(operator == '='){
                 let result = getHistory();
                 result = result + getValue();
                 printValue(eval(result));
                 printHistory(result);
                 getValue('');
-            }else {
+            }
+            else {
 
                 let history = getHistory();
                     if(history == ''){
