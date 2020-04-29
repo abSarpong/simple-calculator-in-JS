@@ -9,32 +9,35 @@
 // }
 
 function getHistory(){
-    let getHis = document.getElementById('history');
-    return getHis.innerHTML;
+    let getHistory = document.getElementById('history');
+    return getHistory.innerHTML;
 }
 
 function printHistory(num){
-    let printHis = document.getElementById('history');
-    printHis.innerHTML = num;
+    let printHistory = document.getElementById('history');
+    printHistory.innerHTML = num;
 }
 
 function getValue(){
-    let getVal = document.getElementById('output');
-    return getVal.innerHTML;
+    let getValue = document.getElementById('output');
+    return getValue.innerHTML;
 }
 
 function printValue(num){
-    let printVal = document.getElementById('output');
-    printVal.innerHTML = num;
+    let printValue = document.getElementById('output');
+    printValue.innerHTML = num;
 }
 
     let numbers = document.getElementsByClassName('number');
     for(var i = 0; i < numbers.length; i++ ){
         numbers[i].addEventListener('click', function(){
             let number = getValue();
+            if(number == 0){
+                number = '';
+            }
             number = number + this.id;
             printValue(number);
-            console.log(number);
+            // console.log(number);
         })
     }
 
