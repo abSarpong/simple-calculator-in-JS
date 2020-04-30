@@ -28,16 +28,23 @@ function printValue(num){
     printValue.innerHTML = num;
 }
 
+function formatNumberToThousands(num){
+    let value = Number(num);
+    value = value.toLocaleString('en');
+    return value;
+}
+
     let numbers = document.getElementsByClassName('number');
     for(var i = 0; i < numbers.length; i++ ){
-        numbers[i].addEventListener('click', function(){
+        numbers[i].addEventListener('click', function(e){
+            let dec = numbers;
             let number = getValue();
-            if(number == 0){
-                number = '';
-            }
-            number = number + this.id;
-            printValue(number);
-            // console.log(number);
+
+                if(number == 0){
+                    number = '';
+                }
+                number = number + this.id;
+                printValue(number);
         })
     }
 
@@ -46,6 +53,7 @@ function printValue(num){
         operators[i].addEventListener('click', function(){
             let operator = this.id;
 
+            // Clear entry from right to back
             if(operator == 'clear-entry'){
                 if(output !== ''){
                     let output = getValue();
@@ -54,19 +62,35 @@ function printValue(num){
                     console.log(output);
                 }
             }
+            // Clear entire screen
             else if(operator == 'clear'){
-                printValue('');
-                printHistory('');
+                let output = getValue();
+                let history = getHistory();
+                    if(output !== '' && history !== ''){
+                        printHistory('');
+                        printValue(0);
+                    }else {
+                        printHistory('');
+                        printValue(0);
+                    }
             }
+            // Perform arithmetic
             else if(operator == '='){
                 let result = getHistory();
                 result = result + getValue();
                 printValue(eval(result));
+
                 printHistory(result);
                 getValue('');
-            }
-            else {
 
+                // let newResult = eval(result);
+                // if(newResult !== ''){
+                //     newResult++;
+                //     console.log(newResult);
+                // }
+            }
+            // Display values and history on screen
+            else {
                 let history = getHistory();
                     if(history == ''){
                         history = history + getValue();
@@ -75,7 +99,7 @@ function printValue(num){
                         printValue('');
                         getValue('');
                     }else {
-                        history = getHistory(history);
+                        history = getHistory();
                         history = getValue();
                         printHistory(history);
                         printValue('')
