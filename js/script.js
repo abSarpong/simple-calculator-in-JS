@@ -36,8 +36,7 @@ function formatNumberToThousands(num){
 
     let numbers = document.getElementsByClassName('number');
     for(var i = 0; i < numbers.length; i++ ){
-        numbers[i].addEventListener('click', function(e){
-            let dec = numbers;
+        numbers[i].addEventListener('click', function(){
             let number = getValue();
 
                 if(number == 0){
@@ -59,7 +58,6 @@ function formatNumberToThousands(num){
                     let output = getValue();
                     output = output.substr(0, output.length -1);
                     printValue(output);
-                    console.log(output);
                 }
             }
             // Clear entire screen
@@ -78,35 +76,18 @@ function formatNumberToThousands(num){
             else if(operator == '='){
                 let result = getHistory();
                 result = result + getValue();
-                printValue(eval(result));
-
+                let evaluation = eval(result);
+                printValue(evaluation);
                 printHistory(result);
-                getValue('');
-
-                // let newResult = eval(result);
-                // if(newResult !== ''){
-                //     newResult++;
-                //     console.log(newResult);
-                // }
             }
+
             // Display values and history on screen
             else {
                 let history = getHistory();
-                    if(history == ''){
-                        history = history + getValue();
-                        history = history + operator;
-                        printHistory(history);
-                        printValue('');
-                        getValue('');
-                    }else {
-                        history = getHistory();
-                        history = getValue();
-                        printHistory(history);
-                        printValue('')
-                        history = history + getValue();
-                        history = history + operator;
-                        printHistory(history);
-                    }
+                history = getValue() + operator;
+                printHistory(history);
+                
+                printValue('');
 
             }
         })
