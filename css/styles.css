@@ -29,7 +29,7 @@ html,body{
 }
 
 .display-wrapper {
-    height: 60px;
+    height: 40px;
     padding: 20px;
     display: flex;
     flex-direction: column;

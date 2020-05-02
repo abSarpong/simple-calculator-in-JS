@@ -1,23 +1,4 @@
 
-// function formatNumber(num){
-//     let number = Number(num);
-//     return number;
-// }
-
-// function reverseNumberFormat(num){
-// 	return Number(num.replace(/,/g,''));
-// }
-
-function getHistory(){
-    let getHistory = document.getElementById('history');
-    return getHistory.innerHTML;
-}
-
-function printHistory(num){
-    let printHistory = document.getElementById('history');
-    printHistory.innerHTML = num;
-}
-
 function getValue(){
     let getValue = document.getElementById('output');
     return getValue.innerHTML;
@@ -28,15 +9,9 @@ function printValue(num){
     printValue.innerHTML = num;
 }
 
-function formatNumberToThousands(num){
-    let value = Number(num);
-    value = value.toLocaleString('en');
-    return value;
-}
-
-    let numbers = document.getElementsByClassName('number');
-    for(var i = 0; i < numbers.length; i++ ){
-        numbers[i].addEventListener('click', function(){
+    let keys = document.getElementsByClassName('key');
+    for(var i = 0; i < keys.length; i++ ){
+        keys[i].addEventListener('click', function(){
             let number = getValue();
 
                 if(number == 0){
@@ -52,43 +27,22 @@ function formatNumberToThousands(num){
         operators[i].addEventListener('click', function(){
             let operator = this.id;
 
-            // Clear entry from right to back
-            if(operator == 'clear-entry'){
-                if(output !== ''){
-                    let output = getValue();
-                    output = output.substr(0, output.length -1);
-                    printValue(output);
-                }
+            if(operator == '='){
+                let history = getValue();
+                history = eval(history);
+                printValue(history);
             }
-            // Clear entire screen
-            else if(operator == 'clear'){
+            else if(operator == 'clear-entry'){
                 let output = getValue();
-                let history = getHistory();
-                    if(output !== '' && history !== ''){
-                        printHistory('');
-                        printValue(0);
-                    }else {
-                        printHistory('');
-                        printValue(0);
-                    }
+                output = output.substr(0, output.length -1);
+                printValue(output);
             }
-            // Perform arithmetic
-            else if(operator == '='){
-                let result = getHistory();
-                result = result + getValue();
-                let evaluation = eval(result);
-                printValue(evaluation);
-                printHistory(result);
-            }
-
-            // Display values and history on screen
             else {
-                let history = getHistory();
-                history = getValue() + operator;
-                printHistory(history);
-                
-                printValue('');
-
+                let output = getValue();
+                    if(output !== ''){
+                        printValue(0);
+                        getValue('');
+                    }
             }
         })
     }
